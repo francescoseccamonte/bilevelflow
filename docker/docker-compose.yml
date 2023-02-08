@@ -1,0 +1,12 @@
+# Simple docker-compose file to easily run containers with a pytorch installation
+# Usage: 
+#   - Launch container for the first time (from the main folder): docker compose -f docker/docker-compose.yml up -d
+#   - Exec bash inside container previously started (get container name from previous step): docker exec -it <container_name> /bin/bash
+version: '3'
+services:
+  pytorch: # name of the service
+    image: francescoseccamonte/flow:py3.7-torch1.12.1-cu11.3
+    volumes: # upper folder accessible under /content
+      - ../:/content
+    stdin_open: true
+    tty: true

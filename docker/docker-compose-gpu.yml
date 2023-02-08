@@ -1,0 +1,12 @@
+# docker-compose file to easily add gpu support to the main docker-compose.yml file
+# Note: it assumes nvidia-docker2 is installed. See https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html
+# Usage: 
+#   - Launch container for the first time (from the main folder): docker compose -f docker/docker-compose.yml -f docker/docker-compose-gpu.yml up -d
+#   - Exec bash inside container previously started (get container name from previous step): docker exec -it <container_name> /bin/bash
+services:
+  pytorch:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
